@@ -20,6 +20,7 @@ export default function App() {
   const [Lastname, setLastname]= useState('');
   const [Firstname, setFirstname]= useState('');
   const [Email, setEmail]= useState('');
+  const [City, setCity]= useState('');
 
   //for submit event
   const handleAddUserSubmit = (e)=> {
@@ -28,12 +29,14 @@ export default function App() {
     let user ={
       Lastname,
       Firstname,
-      Email
+      Email,
+      City
     }
     setUsers([...users, user]);
     setLastname('');
     setFirstname('');
     setEmail('');
+    setCity('')
     
 
   }
@@ -61,9 +64,9 @@ export default function App() {
                 <label for="Email">Email:</label>
                 <input type="Email" className="form-control" placeholder="Enter Email" id="Email" required onChange ={(e => setEmail(e.target.value))} value ={Email}/>
               </div>
-              <div className="form-group">
+              <div className="form-group" >
                 <label for="City">City:</label>
-                <select name="City" className="custom-select">
+                <select name="City" className="custom-select" required onChange ={(e => setCity(e.target.value))} value ={City}>
                   <option selected>select your City</option>
                   <option value="Anlakely">Anlakely</option>
                   <option value="Ambohimanarina">Ambohimanarina</option>
@@ -86,6 +89,7 @@ export default function App() {
                     <td>Lastname</td>
                     <td>Firstname</td>
                     <td>Email</td>
+                    <td>City</td>
                   </tr>
                 </thead>
                 <tbody>
@@ -96,6 +100,7 @@ export default function App() {
                           <td>{user.Lastname}</td>
                           <td>{user.Firstname}</td>
                           <td>{user.Email}</td>
+                          <td>{user.City}</td>
                         </tr>
                       )
                     })
