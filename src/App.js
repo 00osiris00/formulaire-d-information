@@ -1,5 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import './style.css';
+import {Icon} from 'react-icons-kit';
+import {trash} from 'react-icons-kit/feather/trash';
 
 
 //getting data from localStorage
@@ -38,8 +40,15 @@ export default function App() {
     setEmail('');
     setCity('')
 
-  }
-
+  };
+  //delete user from LS
+  const deleteUser = (Email)=>{
+    console.log(Email);
+    const filteredUsers = users.filter((element, index)=>{
+      return element.Email !== Email
+    })
+    setUsers(filteredUsers)
+  };
   //saving data to local storage
   useEffect(()=>{
     localStorage.setItem('users', JSON.stringify(users));
@@ -90,6 +99,7 @@ export default function App() {
                       <td>Firstname</td>
                       <td>Email</td>
                       <td>city</td>
+                      <td>tools</td>
                     </tr>
                   </thead>
                   <tbody>
@@ -101,6 +111,9 @@ export default function App() {
                             <td>{user.Firstname}</td>
                             <td>{user.Email}</td>
                             <td>{user.City}</td>
+                            <td className="delete-btn" onClick={(()=> deleteUser(user.Email))}>
+                              <Icon icon={trash}  />
+                            </td>
                           </tr>
                         )
                       })
