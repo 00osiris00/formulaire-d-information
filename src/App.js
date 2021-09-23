@@ -20,6 +20,7 @@ export default function App() {
   const [Lastname, setLastname]= useState('');
   const [Firstname, setFirstname]= useState('');
   const [Email, setEmail]= useState('');
+  const [City, setCity]= useState('');
 
   //for submit event
   const handleAddUserSubmit = (e)=> {
@@ -28,12 +29,14 @@ export default function App() {
     let user ={
       Lastname,
       Firstname,
-      Email
+      Email,
+      City
     }
     setUsers([...users, user]);
     setLastname('');
     setFirstname('');
     setEmail('');
+    setCity('')
 
   }
 
@@ -62,7 +65,7 @@ export default function App() {
               </div>
               <div className="form-group">
                 <label for="City">City:</label>
-                <select name="City" className="custom-select">
+                <select name="City" className="custom-select" onChange ={(e => setCity(e.target.value))} value ={City}>
                   <option selected>select your City</option>
                   <option value="Anlakely">Anlakely</option>
                   <option value="Ambohimanarina">Ambohimanarina</option>
@@ -75,36 +78,40 @@ export default function App() {
             </form>
           </div>
         </div>
-        <div className="container" id="form">
-          {users.length < 1 && <div> No user are added yet</div>}
-          {users.length > 0 && 
-            <div className='table-responsive'>
-              <table className= "table">
-                <thead>
-                  <tr>
-                    <td>Lastname</td>
-                    <td>Firstname</td>
-                    <td>Email</td>
-                  </tr>
-                </thead>
-                <tbody>
-                  {users.length>=1 ? (
-                    users.map(function (user, index){
-                      return(
-                        <tr key={user.index}>
-                          <td>{user.Lastname}</td>
-                          <td>{user.Firstname}</td>
-                          <td>{user.Email}</td>
-                        </tr>
-                      )
-                    })
-                  ) : (
-                    <></>
-                  )}
-                </tbody>
-              </table>
-            </div>
-          }
+        <div className ="col-xl-6">
+          <div className="container" id="form">
+            {users.length < 1 && <div> No user are added yet</div>}
+            {users.length > 0 && 
+              <div className='table-responsive'>
+                <table className= "table">
+                  <thead>
+                    <tr>
+                      <td>Lastname</td>
+                      <td>Firstname</td>
+                      <td>Email</td>
+                      <td>city</td>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {users.length>=1 ? (
+                      users.map(function (user, index){
+                        return(
+                          <tr key={user.index}>
+                            <td>{user.Lastname}</td>
+                            <td>{user.Firstname}</td>
+                            <td>{user.Email}</td>
+                            <td>{user.City}</td>
+                          </tr>
+                        )
+                      })
+                    ) : (
+                      <></>
+                    )}
+                  </tbody>
+                </table>
+              </div>
+            }
+          </div>
         </div>
       </div>
     </div>
